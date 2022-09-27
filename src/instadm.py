@@ -144,16 +144,32 @@ class InstaDM(object):
     def sendMessage(self, user, message, greeting=None):
         logging.info(f'Send message to {user}')
         print(f'Send message to {user}')
-        
+        fichier = open("infos/userSent.txt", "a")
+
         message = message.replace("! ", "!\n")
-        message = message.replace("gratuitement. ","gratuitement.\n\n")
+        message = message.replace("gratuitement. ", "gratuitement.\n\n")
         message = message.replace("Hey ", "Hey\n\n")
         message = message.replace("Salut ", "Salut\n\n")
         message = message.replace("Heyy ", "Heyy\n\n")
         message = message.replace("Coucou ", "Coucou\n\n")
-        message = message.replace("... ","...\n")
+        message = message.replace("... ", "...\n")
 
-        print(f'Message sent {message}')
+        str = '\n' + user
+        fichier.write(str)
+        fichier.close
+
+        try:
+            with open('infos/usernames.txt', 'r') as fr:
+                lines = fr.readlines()
+
+                with open('infos/usernames.txt', 'w') as fw:
+                    for line in lines:
+                        if line.strip('\n') != user:
+                            fw.write(line)
+            print("Deleted")
+        except:
+            print("Oops! something error")
+
         self.driver.get('https://www.instagram.com/direct/new/?hl=en')
         self.__random_sleep__(2, 4)
 
@@ -365,4 +381,3 @@ class InstaDM(object):
     def teardown(self):
         self.driver.close()
         self.driver.quit()
-
