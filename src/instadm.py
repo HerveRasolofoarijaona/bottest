@@ -46,8 +46,7 @@ class InstaDM(object):
         options.add_experimental_option("mobileEmulation", mobile_emulation)
         options.add_argument("--log-level=3")
 
-        self.driver = webdriver.Chrome(
-            executable_path=CM().install(), options=options)
+        self.driver = webdriver.Chrome( executable_path=CM().install(), options=options)
         self.driver.set_window_position(0, 0)
         self.driver.set_window_size(414, 936)
 
@@ -95,9 +94,11 @@ class InstaDM(object):
             self.__get_element__(
                 self.selectors['home_to_login_button'], 'xpath').click()
             self.__random_sleep__(5, 7)
+        
+        
 
         # login
-        logging.info(f'Login with {username}')
+        print(f'Login with {username}')
         self.__scrolldown__()
         if not self.__wait_for_element__(self.selectors['username_field'], 'name', 10):
             print('Login Failed: username field not visible')
@@ -142,8 +143,10 @@ class InstaDM(object):
             print('Message sent successfully')
 
     def sendMessage(self, user, message, greeting=None):
-        logging.info(f'Send message to {user}')
+        # logging.info(f'Send message to {user}')
         print(f'Send message to {user}')
+        print(f'')
+
         fichier = open("infos/userSent.txt", "a")
 
         message = message.replace("! ", "!\n")
@@ -157,6 +160,11 @@ class InstaDM(object):
         str = '\n' + user
         fichier.write(str)
         fichier.close
+        print(f'send :')
+        print(f'{message}')
+
+        print(f'')
+
 
         try:
             with open('infos/usernames.txt', 'r') as fr:
@@ -166,7 +174,7 @@ class InstaDM(object):
                     for line in lines:
                         if line.strip('\n') != user:
                             fw.write(line)
-            print("Deleted")
+            print(f'Deleted user received message and rewrite it in userSent.txt')
         except:
             print("Oops! something error")
 
