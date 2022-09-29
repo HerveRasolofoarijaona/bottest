@@ -17,7 +17,7 @@ class InstaDM(object):
 
     def __init__(self, username, password, headless=True, instapy_workspace=None, profileDir=None):
         self.selectors = {
-            "accept_cookies": "//button[text()='Accept']",
+            "accept_cookies": "//button[text()='Autoriser les cookies essentiels et optionnels']",
             "home_to_login_button": "//button[text()='Log In']",
             "username_field": "username",
             "password_field": "password",
