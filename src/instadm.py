@@ -17,7 +17,8 @@ class InstaDM(object):
 
     def __init__(self, username, password, headless=True, instapy_workspace=None, profileDir=None):
         self.selectors = {
-            "accept_cookies": "//html/body/div[4]/div/div/button[2]",
+            # "accept_cookies": "//html/body/div[4]/div/div/button[2]",
+            "accept_cookies": "//html/body/div[4]/div/div/div[3]/div[2]/button",
             "home_to_login_button": "//button[text()='Log In']",
             "username_field": "username",
             "password_field": "password",
@@ -31,7 +32,7 @@ class InstaDM(object):
             "send": "//button[text()='Send']"
         }
     
-
+    
         # Selenium config
         options = webdriver.ChromeOptions()
 
