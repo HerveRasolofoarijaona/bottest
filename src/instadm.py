@@ -86,7 +86,7 @@ class InstaDM(object):
 
     def login(self, username, password):
         # homepage
-        self.driver.get('https://instagram.com/?hl=fr')
+        self.driver.get('https://instagram.com/?hl=en')
         self.__random_sleep__(3, 5)
 
         if self.__wait_for_element__(self.selectors['accept_cookies'], 'xpath', 10):
