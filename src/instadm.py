@@ -90,8 +90,8 @@ class InstaDM(object):
         self.__random_sleep__(3, 5)
 
         if self.__wait_for_element__(self.selectors['accept_cookies'], 'xpath', 10):
-            # self.__get_element__(self.selectors['accept_cookies'], 'xpath').click()
-            self.driver.find_element_by_xpath("//button[text()='Accept']").click()
+            self.__get_element__(self.selectors['accept_cookies'], 'xpath').click()
+            #self.driver.find_element_by_xpath("//button[text()='Accept']").click()
             self.__random_sleep__(3, 5)
         if self.__wait_for_element__(self.selectors['home_to_login_button'], 'xpath', 10):
             self.__get_element__(
