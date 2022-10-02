@@ -146,6 +146,8 @@ class InstaDM(object):
 
     def sendMessage(self, user, message, greeting=None):
         # logging.info(f'Send message to {user}')
+        userDel = user
+        user = user.lower()
         print(f'Send message to {user}')
         print(f'')
 
@@ -175,7 +177,7 @@ class InstaDM(object):
 
                 with open('infos/usernames.txt', 'w') as fw:
                     for line in lines:
-                        if line.strip('\n') != user:
+                        if line.strip('\n') != userDel:
                             fw.write(line)
             print(f'Deleted user received message and rewrite it in userSent.txt')
         except:
