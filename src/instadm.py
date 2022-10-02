@@ -31,8 +31,7 @@ class InstaDM(object):
             "textarea": "//textarea[@placeholder]",
             "send": "//button[text()='Send']"
         }
-    
-    
+
         # Selenium config
         options = webdriver.ChromeOptions()
 
@@ -48,7 +47,8 @@ class InstaDM(object):
         options.add_experimental_option("mobileEmulation", mobile_emulation)
         options.add_argument("--log-level=3")
 
-        self.driver = webdriver.Chrome( executable_path=CM().install(), options=options)
+        self.driver = webdriver.Chrome(
+            executable_path=CM().install(), options=options)
         self.driver.set_window_position(0, 0)
         self.driver.set_window_size(414, 936)
 
@@ -90,15 +90,14 @@ class InstaDM(object):
         self.__random_sleep__(3, 5)
 
         if self.__wait_for_element__(self.selectors['accept_cookies'], 'xpath', 10):
-            self.__get_element__(self.selectors['accept_cookies'], 'xpath').click()
-            #self.driver.find_element_by_xpath("//button[text()='Accept']").click()
+            self.__get_element__(
+                self.selectors['accept_cookies'], 'xpath').click()
+            # self.driver.find_element_by_xpath("//button[text()='Accept']").click()
             self.__random_sleep__(3, 5)
         if self.__wait_for_element__(self.selectors['home_to_login_button'], 'xpath', 10):
             self.__get_element__(
                 self.selectors['home_to_login_button'], 'xpath').click()
             self.__random_sleep__(5, 7)
-        
-        
 
         # login
         print(f'Login with {username}')
@@ -159,6 +158,8 @@ class InstaDM(object):
         message = message.replace("Heyy ", "Heyy\n\n")
         message = message.replace("Coucou ", "Coucou\n\n")
         message = message.replace("... ", "...\n")
+        message = message.replace("@n", " \n")
+        message = message.replace("@n@n' ", " \n\n")
 
         str = '\n' + user
         fichier.write(str)
@@ -167,7 +168,6 @@ class InstaDM(object):
         print(f'{message}')
 
         print(f'')
-
 
         try:
             with open('infos/usernames.txt', 'r') as fr:
